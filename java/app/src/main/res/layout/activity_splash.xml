@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg">
+
+    <ProgressBar
+        android:id="@+id/brp_launcher_load_progress_bar3"
+        style="@style/round_progressbar"
+        android:layout_width="145dp"
+        android:layout_height="150dp"
+        android:layout_marginEnd="4dp"
+        android:indeterminateDrawable="@drawable/progressbarbg"
+        android:progress="50"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.938" />
+
+    <TextView
+        android:id="@+id/brp_launcher_load_progress_text3"
+        android:layout_width="55dp"
+        android:layout_height="27dp"
+        android:fontFamily="@font/instialplate"
+        android:text="100%"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/_17sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/brp_launcher_load_progress_bar3"
+        app:layout_constraintEnd_toEndOf="@+id/brp_launcher_load_progress_bar3"
+        app:layout_constraintHorizontal_bias="0.622"
+        app:layout_constraintStart_toStartOf="@+id/brp_launcher_load_progress_bar3"
+        app:layout_constraintTop_toTopOf="@+id/brp_launcher_load_progress_bar3"
+        app:layout_constraintVertical_bias="0.504" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="274dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="228dp"
+        android:fontFamily="@font/akrobat_extra_bold"
+        android:gravity="center"
+        android:text="Загрузка лаунчера"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_13sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/brp_launcher_pre_load_download3"
+        android:layout_width="51dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/instail_game"
+        android:fontFamily="@font/akrobat_semi_bold"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.044" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/brp_launcher_not_internet"
+        android:layout_width="@dimen/_260sdp"
+        android:layout_height="@dimen/_170sdp"
+        android:background="@drawable/bg_dialog_pre"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/akrobat_extrabold"
+            android:gravity="center"
+            android:text="Отсутствует интернет!\nПроверьте подключение к сети"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.235" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:src="@drawable/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView3" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

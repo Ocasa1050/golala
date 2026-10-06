@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg">
+
+    <ProgressBar
+        android:id="@+id/brp_launcher_load_progress_bar2"
+        style="@style/round_progressbar"
+        android:layout_width="145dp"
+        android:layout_height="150dp"
+        android:layout_marginEnd="4dp"
+        android:indeterminateDrawable="@drawable/progressbarbg"
+        android:progress="50"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.938" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="273dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="256dp"
+        android:fontFamily="@font/akrobat_extra_bold"
+        android:gravity="center"
+        android:text="Предварительная установка игры "
+        android:textColor="@color/white"
+        android:textSize="@dimen/_13sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/brp_launcher_pre_load_download"
+        android:layout_width="51dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/instail_game"
+        android:fontFamily="@font/akrobat_semi_bold"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.044" />
+
+    <TextView
+        android:id="@+id/brp_launcher_load_progress_text2"
+        android:layout_width="55dp"
+        android:layout_height="27dp"
+        android:fontFamily="@font/instialplate"
+        android:text="100%"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/_17sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/brp_launcher_load_progress_bar2"
+        app:layout_constraintEnd_toEndOf="@+id/brp_launcher_load_progress_bar2"
+        app:layout_constraintHorizontal_bias="0.588"
+        app:layout_constraintStart_toStartOf="@+id/brp_launcher_load_progress_bar2"
+        app:layout_constraintTop_toTopOf="@+id/brp_launcher_load_progress_bar2"
+        app:layout_constraintVertical_bias="0.495" />
+
+    <ImageView
+        android:id="@+id/imageView29"
+        android:layout_width="301dp"
+        android:layout_height="33dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/info_instaill" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

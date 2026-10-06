@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/settingsbg">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="699dp"
+        android:layout_height="340dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:paddingRight="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.843"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.619">
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:fontFamily="@font/montserrat_bold"
+
+            android:textColor="#80fcf7f7"
+            android:textSize="@dimen/_9sdp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.132"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+        <EditText
+            android:id="@+id/brp_launcher_settings_nick"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:background="@drawable/ic_name_input_bg"
+            android:digits="qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM_"
+            android:drawablePadding="@dimen/_5sdp"
+            android:fontFamily="@font/montsserat_semibold"
+            android:hint="Имя_Фамилия"
+            android:inputType="text"
+            android:paddingStart="@dimen/_10sdp"
+            android:singleLine="true"
+            android:textColor="#E8E8E8"
+            android:textColorHint="#94ffffff"
+            android:textSize="@dimen/_10sdp"
+            android:visibility="gone"
+            app:drawableLeftCompat="@drawable/ic_user"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView12" />
+
+        <TextView
+            android:id="@+id/switch2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="#80fcf7f7"
+            android:textSize="@dimen/_9sdp"
+            android:visibility="gone" />
+
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:shadowColor="#FF0000"
+            android:text="Улучшенная Графика"
+            android:textColor="#FFFFFF"
+            android:visibility="gone" />
+
+        <Switch
+            android:id="@+id/switch3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:shadowColor="#FF0000"
+            android:text="Растительность"
+            android:textColor="#FFFFFF"
+            android:visibility="gone" />
+
+        <Switch
+            android:id="@+id/switch4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:shadowColor="#FF0000"
+            android:text="Получать уведомления"
+            android:textColor="#FFFFFF"
+            android:visibility="gone" />
+
+        <RadioGroup
+            android:layout_width="284dp"
+            android:layout_height="167dp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            tools:layout_editor_absoluteX="222dp"
+            tools:layout_editor_absoluteY="27dp">
+
+            <RadioButton
+                android:id="@+id/brp_launcher_settings_new_graphics_on"
+                android:layout_width="76dp"
+                android:layout_height="67dp"
+                android:background="@drawable/white"
+                android:button="@color/transparent"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:text="ВКЛ"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_11sdp" />
+
+            <RadioButton
+                android:id="@+id/brp_launcher_settings_new_graphics_off"
+                android:layout_width="@dimen/_125sdp"
+                android:layout_height="fill_parent"
+                android:background="@drawable/white"
+                android:button="@color/transparent"
+                android:checked="true"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center" />
+
+            <RadioButton
+                android:id="@+id/brp_launcher_settings_new_graphics_off2"
+                android:layout_width="83dp"
+                android:layout_height="94dp"
+                android:layout_weight="1"
+                android:background="@drawable/white"
+                android:button="@color/transparent"
+                android:checked="true"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:text="ВЫКЛ"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_11sdp" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:id="@+id/test5"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="21.0dip"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fps_l">
+
+            <Button
+                android:id="@+id/brp_launcher_reinstall"
+                android:layout_width="@dimen/_250sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/white"
+                android:fontFamily="@font/montserrat_bold"
+                android:textAllCaps="false"
+                android:textColor="#D1D1D1"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_17sdp"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center_horizontal"
+            android:text="Следи за новостями"
+            android:textAllCaps="false"
+            android:textColor="#fffcf7f7"
+            android:textSize="17.0dip"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/brp_launcher_settings_links"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/imageViewTelegram"
+                android:layout_width="@dimen/_49sdp"
+                android:layout_height="@dimen/_49sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:src="@drawable/ic_telegram_png" />
+
+            <ImageView
+                android:id="@+id/imageViewVK"
+                android:layout_width="@dimen/_49sdp"
+                android:layout_height="@dimen/_49sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:src="@drawable/ic_vk" />
+
+            <ImageView
+                android:id="@+id/imageViewDiscord"
+                android:layout_width="@dimen/_49sdp"
+                android:layout_height="@dimen/_49sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:src="@drawable/ic_discord" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/brp_forum"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15.0dip"
+            android:drawablePadding="@dimen/_5sdp"
+            android:fontFamily="@font/akrobat_bold"
+            android:gravity="center_horizontal"
+            android:text="Игровой форум"
+            android:textAllCaps="false"
+            android:textColor="#FF9B30"
+            android:textSize="20.0dip"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/brp_launcher_play"
+            app:layout_constraintStart_toStartOf="@+id/brp_launcher_play"
+            app:layout_constraintTop_toBottomOf="@+id/brp_launcher_play"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/brp_tech"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15.0dip"
+            android:drawablePadding="@dimen/_5sdp"
+            android:fontFamily="@font/akrobat_bold"
+            android:gravity="center_horizontal"
+            android:text="Тех.Поддержка"
+            android:textAllCaps="false"
+            android:textColor="#FF9B30"
+            android:textSize="20.0dip"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/brp_launcher_play"
+            app:layout_constraintStart_toStartOf="@+id/brp_launcher_play"
+            app:layout_constraintTop_toBottomOf="@+id/brp_launcher_play"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <Button
+            android:id="@+id/brp_launcher_reinstall2"
+            android:layout_width="232dp"
+            android:layout_height="49dp"
+            android:layout_marginEnd="28dp"
+            android:background="@drawable/white"
+            android:fontFamily="@font/montserrat_bold"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.9" />
+
+        <Button
+            android:id="@+id/brp_launcher_settings_back"
+            android:layout_width="237dp"
+            android:layout_height="84dp"
+            android:layout_marginEnd="16dp"
+            android:background="@null"
+            android:drawableStart="@drawable/white"
+            android:gravity="center"
+            android:paddingStart="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.241" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

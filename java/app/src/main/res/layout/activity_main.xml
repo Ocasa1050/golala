@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_activity_root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg02"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <HorizontalScrollView
+        android:layout_width="319dp"
+        android:layout_height="156dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.034"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.713">
+
+        <ImageView
+            android:id="@+id/newsstor"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/news_bg" />
+    </HorizontalScrollView>
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="133dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/online" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="516dp"
+        android:fontFamily="@font/black_bot"
+        android:textColor="#00FFFFFF"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.071" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/din_pro_bold"
+        android:text="1000"
+        android:textColor="#D9F0EEEE"
+        android:textSize="15dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageView7"
+        app:layout_constraintHorizontal_bias="0.247"
+        app:layout_constraintStart_toStartOf="@+id/imageView7"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.131" />
+
+    <ImageView
+        android:id="@+id/imageView31"
+        android:layout_width="56dp"
+        android:layout_height="5dp"
+        android:layout_marginStart="152dp"
+        android:src="@drawable/news_progress"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.849" />
+
+    <ImageView
+        android:id="@+id/imageView28"
+        android:layout_width="204dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="28dp"
+        android:src="@drawable/news_proekt"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.37" />
+
+    <EditText
+        android:id="@+id/edit_text_name"
+        android:layout_width="169dp"
+        android:layout_height="36dp"
+        android:layout_margin="30dp"
+        android:background="@drawable/nick"
+        android:digits="abcdefghijklmnopqrstuvwxyz_ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        android:fontFamily="@font/pt_root_ui_bold"
+        android:gravity="center"
+        android:hint="Введите никнейм"
+        android:imeOptions="actionDone|flagNoFullscreen"
+        android:inputType="textCapSentences"
+        android:maxLength="23"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textColorHint="#FFFFFF"
+        android:textSize="11.0sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/ib_info"
+        android:layout_width="40dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="252dp"
+        android:background="@drawable/emoji_newspaper"
+        android:contentDescription="info"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.08" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_play"
+        android:layout_width="229dp"
+        android:layout_height="123dp"
+        android:layout_margin="30dp"
+        android:background="@drawable/play_game"
+        android:drawablePadding="10dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:paddingStart="28dp"
+        android:paddingEnd="36dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_clean_game"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:background="@drawable/back"
+        android:drawablePadding="10dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:text="Починить игру"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <ImageButton
+        android:id="@+id/button_vk"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="170dp"
+        android:background="@drawable/vk_ic"
+        android:contentDescription="vk"
+        app:layout_constraintBottom_toTopOf="@+id/button_ytobe"
+        app:layout_constraintEnd_toEndOf="@+id/button_discord"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/button_discord"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8" />
+
+    <ImageButton
+        android:id="@+id/button_ytobe"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:background="@drawable/ytybe"
+        android:contentDescription="vk"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/button_discord"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/button_discord"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.611" />
+
+    <ImageButton
+        android:id="@+id/button_discord"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="222dp"
+        android:background="@drawable/discord_ic"
+        android:contentDescription="discord"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/button_telegram"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/button_telegram"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.562" />
+
+    <ImageButton
+        android:id="@+id/button_telegram"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:background="@drawable/launcher_main_telegram_ic"
+        android:contentDescription="telegram"
+        app:layout_constraintBottom_toTopOf="@+id/button_discord"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.480"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_ytobe"
+        app:layout_constraintVertical_bias="0.700" />
+
+    <TextView
+        android:id="@+id/text_view_info_about_nickname"
+        android:layout_width="237dp"
+        android:layout_height="97dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/background_brilliant"
+        android:importantForAccessibility="no"
+        android:paddingStart="8dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="8dp"
+        android:text="· Автор работы: Кирюха...
+        \n· Котики топ\n· Как дела?
+\n· Проект красочный\n· На проекте есть система война за биснесс\n· Промокоды: none"
+        android:textColor="@color/white"
+        android:textSize="10.0sp"
+        android:textStyle="italic"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/ib_info"
+        app:layout_constraintTop_toBottomOf="@+id/ib_info" />
+
+
+    <Button
+        android:id="@+id/brp_launcher_settings_btn"
+        android:layout_width="39dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="208dp"
+        android:background="@drawable/settings"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.08" />
+
+    <ImageButton
+        android:id="@+id/button_donate"
+        android:layout_width="124dp"
+        android:layout_height="39dp"
+        android:layout_marginEnd="240dp"
+        android:background="@drawable/donate_main"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView7" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
