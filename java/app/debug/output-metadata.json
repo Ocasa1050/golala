@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.saint.game",
+  "variantName": "debug",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "properties": [],
+      "versionCode": 10,
+      "versionName": "lr-build-stable",
+      "enabled": true,
+      "outputFile": "app-debug.apk"
+    }
+  ]
+}
