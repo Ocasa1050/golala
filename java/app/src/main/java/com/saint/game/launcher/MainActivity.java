@@ -331,9 +331,10 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean IsGameInstalled()
     {
-        String CheckFile = Environment.getExternalStorageDirectory() + "/Crmp/texdb/gta3 .img";
-        File file = new File(CheckFile);
-        return file.exists();
+        File textureDirectory = new File(Environment.getExternalStorageDirectory(), "Crmp/texdb");
+        File gameArchive = new File(textureDirectory, "gta3.img");
+        File legacyGameArchive = new File(textureDirectory, "gta3 .img");
+        return gameArchive.isFile() || legacyGameArchive.isFile();
     }
     public void onClickSettings() {
         startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
