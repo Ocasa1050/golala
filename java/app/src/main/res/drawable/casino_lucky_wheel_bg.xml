@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector android:height="239.0dip" android:width="322.0dip" android:viewportWidth="322.0" android:viewportHeight="239.0"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt">
+    <group>
+        <clip-path android:pathData="M9 1H313C317.418 1 321 4.58172 321 9V230C321 234.418 317.418 238 313 238H9C4.58172 238 1 234.418 1 230V9C1 4.58172 4.58172 1 9 1Z" />
+        <group android:pivotX="161.0" android:pivotY="119.5" android:scaleX="5.918" android:scaleY="6.787" android:rotation="133.982" android:translateX="3.092" android:translateY="0.239">
+            <path android:fillColor="@drawable/casino_lucky_wheel_bg__0" android:pathData="M1 1V238H321V1" />
+        </group>
+    </group>
+    <group>
+        <clip-path android:pathData="M0 0V239H322V0M9 1H313C317.418 1 321 4.58172 321 9V230C321 234.418 317.418 238 313 238H9C4.58172 238 1 234.418 1 230V9C1 4.58172 4.58172 1 9 1Z" />
+    </group>
+</vector>
