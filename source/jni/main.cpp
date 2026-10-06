@@ -226,7 +226,7 @@ void InitInGame()
 		pGame->InitInGame();
 		pGame->SetMaxStats();
 
-		pNetGame = new CNetGame(cryptor::create("51.75.232.68", 15).decrypt(), atoi(cryptor::create("1785", 4).decrypt()), pSettings->GetReadOnly().szNickName, pSettings->GetReadOnly().szPassword);
+		pNetGame = new CNetGame(cryptor::create("188.127.241.74", sizeof("188.127.241.74")).decrypt(), atoi(cryptor::create("1255", sizeof("1255")).decrypt()), pSettings->GetReadOnly().szNickName, pSettings->GetReadOnly().szPassword);
 
 		bGameInited = true;
 
