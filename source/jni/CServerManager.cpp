@@ -3,12 +3,12 @@
 #include <stdint.h>
 
 const char* g_szServerNames[MAX_SERVERS] = {
-	"Brilliant RP | Phantom",
-	"Brilliant RP | Cullinan"
+	"My Server",
+	"My Server"
 
 };
 
 const CServerInstance::CServerInstanceEncrypted g_sEncryptedAddresses[MAX_SERVERS] = {
-	CServerInstance::create("147.135.229.229", 1, 16, 1279, false), // 1
-	CServerInstance::create("147.135.229.229", 1, 16, 1279, false) // 2
+	CServerInstance::create("188.127.241.74", 1, 15, 1255, false), // 1
+	CServerInstance::create("188.127.241.74", 1, 15, 1255, false) // 2
 };
