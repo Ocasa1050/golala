@@ -81,6 +81,84 @@ jobs:
           fi
           "$NDK_R17/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++" --version
 
+      - name: Fix paths and filename case for the build (CI only)
+        shell: bash
+        run: |
+          # Android.mk and the #include lines expect the encryption sources in
+          # source/santrope-tea-gtasa, but the folder lives at the repo root.
+          # Link it on this CI machine only. Nothing in the repository is moved.
+          if [ -d santrope-tea-gtasa ] && [ ! -e source/santrope-tea-gtasa ]; then
+            ln -s ../santrope-tea-gtasa source/santrope-tea-gtasa
+          fi
+          # Linux is case-sensitive: #include "..//chatWindow.h" cannot find
+          # chatwindow.h. Create CI-only symlinks for every include whose file or
+          # folder name differs only by upper/lower case.
+          python3 - <<'PY'
+          import os, re
+
+          ROOT = "source/jni"
+          EXTS = (".c", ".cc", ".cpp", ".h", ".hpp", ".inc")
+          INC_RE = re.compile(r'^\s*#\s*include\s+"([^"]+)"', re.M)
+          created = []
+          unresolved = set()
+
+
+          def ci_find(d, name):
+              try:
+                  for e in os.listdir(d):
+                      if e.lower() == name.lower():
+                          return e
+              except OSError:
+                  pass
+              return None
+
+
+          def resolve(base, rel):
+              cur = base
+              parts = [p for p in rel.replace("\\", "/").split("/") if p not in ("", ".")]
+              for p in parts:
+                  if p == "..":
+                      cur = os.path.dirname(cur)
+                      continue
+                  cand = os.path.join(cur, p)
+                  if os.path.lexists(cand):
+                      cur = cand
+                      continue
+                  actual = ci_find(cur, p)
+                  if actual is None:
+                      return False
+                  os.symlink(actual, cand)
+                  created.append("%s -> %s" % (cand, actual))
+                  cur = cand
+              return True
+
+
+          for dp, dn, fn in list(os.walk(ROOT)):
+              for f in fn:
+                  if not f.endswith(EXTS):
+                      continue
+                  path = os.path.join(dp, f)
+                  if os.path.islink(path):
+                      continue
+                  text = open(path, encoding="utf-8", errors="ignore").read()
+                  for inc in INC_RE.findall(text):
+                      if os.path.exists(os.path.join(dp, inc)) or os.path.exists(os.path.join(ROOT, inc)):
+                          continue
+                      if resolve(dp, inc) and os.path.exists(os.path.join(dp, inc)):
+                          continue
+                      if resolve(ROOT, inc) and os.path.exists(os.path.join(ROOT, inc)):
+                          continue
+                      unresolved.add("%s: %s" % (path, inc))
+
+          print("Created %d case-fix symlinks (CI only):" % len(created))
+          for c in created:
+              print("  " + c)
+          if unresolved:
+              print("Includes still not found: %d" % len(unresolved))
+              for u in sorted(unresolved):
+                  print("  " + u)
+          PY
+
       - name: Build libsamp.so from source (NDK r17c)
         id: ndk
         continue-on-error: true
