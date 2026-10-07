@@ -59,6 +59,47 @@ jobs:
       - name: Configure Android SDK path
         run: printf 'sdk.dir=%s\n' "$ANDROID_HOME" > java/local.properties
 
+      # ------------------------------------------------------------------
+      # NEW: compile libsamp.so from source/jni (needs old NDK: gnustl_static)
+      # ------------------------------------------------------------------
+      - name: Install NDK r17c
+        run: |
+          curl -fsSL -o "$RUNNER_TEMP/ndk.zip" https://dl.google.com/android/repository/android-ndk-r17c-linux-x86_64.zip
+          unzip -q "$RUNNER_TEMP/ndk.zip" -d "$RUNNER_TEMP"
+          echo "NDK_R17=$RUNNER_TEMP/android-ndk-r17c" >> "$GITHUB_ENV"
+
+      - name: Build libsamp.so from source (NDK r17c)
+        id: ndk
+        continue-on-error: true
+        shell: bash
+        run: |
+          # Android.mk uses vendor/RakNet but the folder is vendor/raknet.
+          # Linux is case-sensitive, so make an alias that exists ONLY on this
+          # CI machine. Nothing in the repository is renamed.
+          if [ ! -e source/jni/vendor/RakNet ] && [ -d source/jni/vendor/raknet ]; then
+            ln -s raknet source/jni/vendor/RakNet
+          fi
+          "$NDK_R17/ndk-build" -C source -j"$(nproc)" 2>&1 | tee ndk-build.log
+          test -f source/libs/armeabi-v7a/libsamp.so
+
+      - name: Use freshly built libsamp.so
+        if: steps.ndk.outcome == 'success'
+        run: cp source/libs/armeabi-v7a/libsamp.so java/app/src/main/jniLibs/armeabi-v7a/libsamp.so
+
+      - name: Warn if libsamp.so build failed
+        if: steps.ndk.outcome == 'failure'
+        run: echo "::warning::libsamp.so build FAILED - this APK still uses the OLD prebuilt libsamp.so. Download the ndk-build-log artifact."
+
+      - name: Upload ndk-build log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ndk-build-log
+          path: ndk-build.log
+          if-no-files-found: ignore
+
+      # ------------------------------------------------------------------
+
       - name: Build debug APK
         run: gradle --no-daemon -p java :app:assembleDebug
 
