@@ -68,6 +68,19 @@ jobs:
           unzip -q "$RUNNER_TEMP/ndk.zip" -d "$RUNNER_TEMP"
           echo "NDK_R17=$RUNNER_TEMP/android-ndk-r17c" >> "$GITHUB_ENV"
 
+      - name: Fix libtinfo.so.5 for old NDK clang
+        run: |
+          # NDK r17c clang needs libtinfo.so.5 which Ubuntu 22.04 no longer ships.
+          # Point it at the installed libtinfo.so.6 (CI machine only).
+          LIBDIR=/lib/x86_64-linux-gnu
+          if [ ! -e "$LIBDIR/libtinfo.so.5" ]; then
+            sudo ln -s "$LIBDIR/libtinfo.so.6" "$LIBDIR/libtinfo.so.5"
+          fi
+          if [ ! -e "$LIBDIR/libncurses.so.5" ] && [ -e "$LIBDIR/libncurses.so.6" ]; then
+            sudo ln -s "$LIBDIR/libncurses.so.6" "$LIBDIR/libncurses.so.5"
+          fi
+          "$NDK_R17/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++" --version
+
       - name: Build libsamp.so from source (NDK r17c)
         id: ndk
         continue-on-error: true
