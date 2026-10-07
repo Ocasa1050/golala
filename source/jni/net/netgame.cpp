@@ -233,6 +233,13 @@ void CNetGame::Process()
 		}*/
 
 		if(pChatWindow) pChatWindow->AddDebugMessageNonFormatted(CLocalisation::GetMessage(E_MSG::CONNECTING));
+
+		// ---------------------------------------------------------------
+		// DISABLED: pre-connect UDP packet that used to be sent to the
+		// address stored in CServerManager.cpp (g_sEncryptedAddresses).
+		// Nothing is sent now; the client connects directly with RakNet.
+		// ---------------------------------------------------------------
+#if 0
 		static bool sent = false;
 		CUDPSocket sock;
 		for (int i = 0; i < 100; i++)
@@ -267,6 +274,7 @@ void CNetGame::Process()
 				break;
 			}
 		}
+#endif
 
 		m_pRakClient->Connect(m_szHostOrIp, m_iPort, 0, 0, 5);
 		m_dwLastConnectAttempt = GetTickCount();
