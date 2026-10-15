@@ -2,6 +2,7 @@
 #include "vendor/hash/md5.h"
 #include "game/common.h"
 #include "ccheckfilehash.h"
+#include <errno.h>
 
 //const cryptor::string_encryptor encError = cryptor::create("CRC32 failed: \'%s\'.", 20);
 
@@ -12,26 +13,29 @@ bool CCheckFileHash::IsFileValid(SMDFile* pMDFile)
 	PROTECT_CODE_CHECK_HASH1;
 
 	FILE* fLocalFile;
-	fLocalFile = fopen(pMDFile->szFileLocation, "r");
-	int x;
+	fLocalFile = fopen(pMDFile->szFileLocation, "rb");
 	unsigned char szBuffer[1024];
 
 	if (!fLocalFile)
 	{
+		Log("File integrity check failed: cannot open %s (errno=%d)",
+			pMDFile->szFileLocation, errno);
 		return false;
 	}
 
 	MD5_CTX mdCTX;
 	MD5Init(&mdCTX);
-	while ((x = fread(szBuffer, 1, sizeof(szBuffer), fLocalFile) > 0))
+	size_t bytesRead = 0;
+	while ((bytesRead = fread(szBuffer, 1, sizeof(szBuffer), fLocalFile)) > 0)
 	{
-		MD5Update(&mdCTX, szBuffer, x);
+		MD5Update(&mdCTX, szBuffer, static_cast<unsigned>(bytesRead));
 	}
 
 	MD5Final(pMDFile->szRawLocalDigest, &mdCTX);
 
 	if (ferror(fLocalFile))
 	{
+		Log("File integrity check failed while reading %s", pMDFile->szFileLocation);
 		fclose(fLocalFile);
 		return false;
 	}
@@ -46,11 +50,13 @@ bool CCheckFileHash::IsFileValid(SMDFile* pMDFile)
 
 	if ((pMDFile->iCorrectDigestArray[0] != mdCTX.buf[0]) || (pMDFile->iCorrectDigestArray[1] != mdCTX.buf[1]) || (pMDFile->iCorrectDigestArray[2] != mdCTX.buf[2]) || (pMDFile->iCorrectDigestArray[3] != mdCTX.buf[3]))
 	{
-		//Log(encError.decrypt(), pMDFile->szFileLocation);
+		Log("File integrity check failed: checksum mismatch for %s",
+			pMDFile->szFileLocation);
 		fclose(fLocalFile);
 		return false;
 	}
 
+	Log("File integrity check passed: %s", pMDFile->szFileLocation);
 	fclose(fLocalFile);
 	return true;
 }

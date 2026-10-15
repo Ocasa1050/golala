@@ -26,6 +26,7 @@
 #include <netdb.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <errno.h>
 
 uintptr_t g_libGTASA = 0;
 const char* g_pszStorage = nullptr;
@@ -142,11 +143,16 @@ void InitSAMP(JNIEnv* pEnv, jobject thiz)
 
 	CWeaponsOutFit::ParseDatFile();
 
+	CrashLog("Crash logger initialized; storage=%s", g_pszStorage);
+
 	if(!CCheckFileHash::IsFilesValid())
 	{
 		CClientInfo::bSAMPModified = false;
+		Log("Client initialization stopped because one or more required game files failed validation.");
 		return;
 	}
+
+	Log("Required game files passed integrity validation.");
 }
 extern CSnapShotHelper* pSnapShotHelper;
 void ProcessCheckForKeyboard();
@@ -629,8 +635,13 @@ void Log(const char *fmt, ...)
 
 	if(flLog == nullptr && g_pszStorage != nullptr)
 	{
-		sprintf(buffer, "%sSAMP/samp_log.txt", g_pszStorage);
+		snprintf(buffer, sizeof(buffer), "%sSAMP/samp_log.txt", g_pszStorage);
 		flLog = fopen(buffer, "a");
+		if(flLog == nullptr)
+		{
+			__android_log_print(ANDROID_LOG_ERROR, "AXL",
+				"Unable to open native log file %s (errno=%d)", buffer, errno);
+		}
 	}
 	memset(buffer, 0, sizeof(buffer));
 
@@ -640,14 +651,13 @@ void Log(const char *fmt, ...)
 	va_end(arg);
 
 	firebase::crashlytics::Log(buffer);
+	__android_log_write(ANDROID_LOG_INFO, "AXL", buffer);
 
 	//if(pDebug) pDebug->AddMessage(buffer);
 
 	if(flLog == nullptr) return;
 	fprintf(flLog, "%s\n", buffer);
 	fflush(flLog);
-
-	__android_log_write(ANDROID_LOG_INFO, "AXL", buffer);
 
 	return;
 }
@@ -659,8 +669,13 @@ void CrashLog(const char* fmt, ...)
 
 	if (flLog == nullptr && g_pszStorage != nullptr)
 	{
-		sprintf(buffer, "%sSAMP/crash_log.log", g_pszStorage);
+		snprintf(buffer, sizeof(buffer), "%sSAMP/crash_log.log", g_pszStorage);
 		flLog = fopen(buffer, "a");
+		if(flLog == nullptr)
+		{
+			__android_log_print(ANDROID_LOG_ERROR, "AXL",
+				"Unable to open crash log file %s (errno=%d)", buffer, errno);
+		}
 	}
 
 	memset(buffer, 0, sizeof(buffer));
