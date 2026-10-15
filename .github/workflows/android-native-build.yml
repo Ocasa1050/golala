@@ -1,0 +1,47 @@
+name: Build Golala Android Native Library
+
+on:
+  push:
+    branches: [jini]
+  pull_request:
+    branches: [jini]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Check paths and build armeabi-v7a JNI library
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check Linux case-sensitive paths
+        run: python3 .github/scripts/check_case_sensitive_paths.py
+
+      - name: Set up Android NDK
+        id: setup-ndk
+        uses: nttld/setup-ndk@v1
+        with:
+          ndk-version: r17c
+
+      - name: Build JNI shared library
+        run: |
+          "${{ steps.setup-ndk.outputs.ndk-path }}/ndk-build" \
+            NDK_PROJECT_PATH=. \
+            APP_BUILD_SCRIPT=jni/Android.mk \
+            NDK_APPLICATION_MK=jni/Application.mk \
+            NDK_OUT="${{ runner.temp }}/golala-obj" \
+            NDK_LIBS_OUT="${{ github.workspace }}/build/libs"
+
+      - name: Verify JNI output
+        run: test -s build/libs/armeabi-v7a/libsampvoice.so
+
+      - name: Upload JNI library
+        uses: actions/upload-artifact@v4
+        with:
+          name: golala-jni-armeabi-v7a
+          path: build/libs/armeabi-v7a/libsampvoice.so
+          if-no-files-found: error
