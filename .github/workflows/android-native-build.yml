@@ -56,7 +56,7 @@ jobs:
       - name: Verify JNI output
         run: test -s build/libs/armeabi-v7a/libsampvoice.so
 
-      - name: Replace native library in uploaded APK
+      - name: Patch server-list URL and replace native library
         run: |
           python3 .github/scripts/replace_apk_native_library.py \
             --apk base.apk \
