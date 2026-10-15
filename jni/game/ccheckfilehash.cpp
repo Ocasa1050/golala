@@ -40,6 +40,24 @@ bool CCheckFileHash::IsFileValid(SMDFile* pMDFile)
 		return false;
 	}
 
+	bool bDigestMatches = true;
+	for (int i = 0; i < 4; ++i)
+	{
+		const int byteOffset = i * 4;
+		const uint32_t actualDigestWord =
+			static_cast<uint32_t>(pMDFile->szRawLocalDigest[byteOffset]) |
+			(static_cast<uint32_t>(pMDFile->szRawLocalDigest[byteOffset + 1]) << 8) |
+			(static_cast<uint32_t>(pMDFile->szRawLocalDigest[byteOffset + 2]) << 16) |
+			(static_cast<uint32_t>(pMDFile->szRawLocalDigest[byteOffset + 3]) << 24);
+
+		if (pMDFile->iCorrectDigestArray[i] != actualDigestWord)
+		{
+			Log("File checksum mismatch for %s: word %d expected=0x%08X actual=0x%08X",
+				pMDFile->szFileLocation, i, pMDFile->iCorrectDigestArray[i], actualDigestWord);
+			bDigestMatches = false;
+		}
+	}
+
 	// use following output to retreive md5 uint32 array's in md5sums.html
 	/*char path[255];
 	sprintf(path, "%sSAMP/md5sums.html", g_pszStorage);
@@ -48,10 +66,8 @@ bool CCheckFileHash::IsFileValid(SMDFile* pMDFile)
 	fprintf(md5sums, "[%s]: mdChkFile->iCorrectDigestArray[]: %u %u %u %u<br>\n", pMDFile->szFileLocation, pMDFile->iCorrectDigestArray[0], pMDFile->iCorrectDigestArray[1], pMDFile->iCorrectDigestArray[2], pMDFile->iCorrectDigestArray[3]);
 	fclose(md5sums);*/
 
-	if ((pMDFile->iCorrectDigestArray[0] != mdCTX.buf[0]) || (pMDFile->iCorrectDigestArray[1] != mdCTX.buf[1]) || (pMDFile->iCorrectDigestArray[2] != mdCTX.buf[2]) || (pMDFile->iCorrectDigestArray[3] != mdCTX.buf[3]))
+	if (!bDigestMatches)
 	{
-		Log("File integrity check failed: checksum mismatch for %s",
-			pMDFile->szFileLocation);
 		fclose(fLocalFile);
 		return false;
 	}
