@@ -27,6 +27,11 @@ jobs:
         with:
           ndk-version: r17c
 
+      - name: Install legacy NDK runtime dependency
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes libtinfo5
+
       - name: Build JNI shared library
         run: |
           "${{ steps.setup-ndk.outputs.ndk-path }}/ndk-build" \
