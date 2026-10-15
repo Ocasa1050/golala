@@ -19,6 +19,12 @@ jobs:
       - name: Check Linux case-sensitive paths
         run: python3 .github/scripts/check_case_sensitive_paths.py
 
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
       - name: Set up Android SDK tools
         uses: android-actions/setup-android@v3
         with:
