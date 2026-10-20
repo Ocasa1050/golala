@@ -7,7 +7,7 @@
 #include <string>
 
 // GTASA HOOK
-#include "clientlogic/CHud.h"
+#include "clientlogic/CHUD.h"
 
 extern CGame* pGame;
 extern CNetGame *pNetGame;

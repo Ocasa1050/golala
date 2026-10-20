@@ -1,7 +1,7 @@
 #include "main.h"
 #include "vendor/hash/md5.h"
 #include "game/common.h"
-#include "CCheckFileHash.h"
+#include "ccheckfilehash.h"
 
 //const cryptor::string_encryptor encError = cryptor::create("CRC32 failed: \'%s\'.", 20);
 

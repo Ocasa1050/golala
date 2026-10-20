@@ -1,4 +1,4 @@
 #include "main.h"
-#include "CHud.h"
+#include "CHUD.h"
 
 CSprite2d** CHud::Sprites = 0;
