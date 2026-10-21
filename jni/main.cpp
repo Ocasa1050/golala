@@ -272,7 +272,6 @@ void CTimer__EndUserPause_hook()
 
                  //WriteMemory(g_libGTASA+0x52DD38, "\x00\x20\x70\x47", 4); // CCoronas::RenderReflections
                  //NOP(g_libGTASA + 0x39AD14, 1); //render clouds, sunrefl, raineffect 
-                 //memcpy((uint32_t*)(g_libGTASA+0x5DE734), "0x10000000", 10); // CStreaming::ms_memoryAvailable(limit);
 
 	*(uint8_t*)(g_libGTASA + 0x008C9BA3) = 0;
 }

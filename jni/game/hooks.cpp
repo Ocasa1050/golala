@@ -776,7 +776,10 @@ void(*CStreaming__Init2)();
 void CStreaming__Init2_hook()
 {
 	CStreaming__Init2();
-	*(uint32_t*)(g_libGTASA + 0x005DE734) = 536870912;
+	// Keep the streaming budget as a numeric 32-bit value and set it once
+	// after initialization. Rewriting this field every frame corrupts adjacent
+	// memory and can destabilize model/terrain streaming.
+	*(uint32_t*)(g_libGTASA + 0x005DE734) = 0x10000000;
 }
 
 void (*NvUtilInit)(void);
@@ -1864,7 +1867,6 @@ void CGame__Process_hook()
 
                  WriteMemory(g_libGTASA + 0x52DD38, (uintptr_t)"\x00\x20\x70\x47", 4); // CCoronas::RenderReflections
                  NOP(g_libGTASA + 0x39AD14, 1); //render clouds, sunrefl, raineffect 
-                 memcpy((uint32_t*)(g_libGTASA+0x5DE734), "0x10000000", 10); // CStreaming::ms_memoryAvailable(limit);
 
 	if (pNetGame && pNetGame->GetPlayerPool() && pNetGame->GetPlayerPool()->GetLocalPlayer())
 	{

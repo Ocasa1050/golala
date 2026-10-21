@@ -340,8 +340,6 @@ void ApplyInGamePatches()
 	//copebar patches
 	WriteMemory(g_libGTASA+0x52DD38, (uintptr_t)"\x00\x20\x70\x47", 4);
     NOP(g_libGTASA + 0x39AD14, 1);
-    memcpy((uint32_t*)(g_libGTASA+0x5DE734), "0x10000000", 10);
-    *(float*)(g_libGTASA + 0x608558) = 200.0f;
 
 	/*                     */
 	// CTheZones::ZonesVisited[100]
